@@ -5,7 +5,7 @@ from machine import Pin, Timer
 
 trigger = Pin(3, Pin.OUT)
 echo = Pin(2, Pin.IN)
-led = Pin(22, Pin.OUT)
+motor = Pin(22, Pin.OUT)
 timer = Timer()
 
 
@@ -21,11 +21,10 @@ def ultra():
         signalon = utime.ticks_us()
     timepassed = signalon - signaloff
     distance = (timepassed * 0.0343) / 2
-    if 10 < int(distance) < 12:
-        led.toggle()
-        utime.sleep(1)
-
-    #print(distance, "cm")
+    if 10 < int(distance) < 15:
+        motor.toggle()
+        utime.sleep(0.5)
+        motor.toggle()
 
 
 while True:
